@@ -1,5 +1,5 @@
 {
-  "updated": null,
+  "updated": "2026-11-17T16:33:25.355Z",
   "games": [
     {
       "id": "rocketleague",
@@ -27,13 +27,13 @@
       "account": "yJustusx",
       "platform": "Origin / PC",
       "profileUrl": "https://apex.tracker.gg/apex/profile/origin/yJustusx/overview",
-      "source": "manual",
-      "rank": "Platzhalter",
-      "division": "",
-      "points": "",
+      "source": "live",
+      "rank": "Silver",
+      "division": "2",
+      "points": 4467,
       "pointsLabel": "RP",
       "playlist": "Ranked Battle Royale",
-      "rankImg": "",
+      "rankImg": "https://api.mozambiquehe.re/assets/ranks/silver2.png",
       "peak": {
         "rank": "Master",
         "division": "",

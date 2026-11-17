@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T21:02:07.998Z",
+  "updated": "2026-11-17T21:59:38.230Z",
   "games": [
     {
       "id": "rocketleague",
@@ -102,7 +102,7 @@
       "source": "live",
       "rank": "Iron",
       "division": "I",
-      "points": 63,
+      "points": 81,
       "pointsLabel": "LP",
       "playlist": "Ranked Solo/Duo",
       "rankImg": "",
@@ -113,35 +113,35 @@
         "note": ""
       },
       "level": 230,
-      "avatar": "https://ddragon.leagueoflegends.com/cdn/16.22.1/img/profileicon/7091.png",
+      "avatar": "https://ddragon.leagueoflegends.com/cdn/16.23.1/img/profileicon/7091.png",
       "champions": [
         {
           "name": "Zeri",
           "games": 8,
           "winrate": 25,
           "kda": "2.52",
-          "img": "https://ddragon.leagueoflegends.com/cdn/16.22.1/img/champion/Zeri.png"
+          "img": "https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Zeri.png"
         },
         {
           "name": "Tristana",
-          "games": 6,
-          "winrate": 67,
-          "kda": "4.67",
-          "img": "https://ddragon.leagueoflegends.com/cdn/16.22.1/img/champion/Tristana.png"
+          "games": 5,
+          "winrate": 60,
+          "kda": "4.50",
+          "img": "https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Tristana.png"
         },
         {
           "name": "Lucian",
           "games": 2,
           "winrate": 50,
           "kda": "1.70",
-          "img": "https://ddragon.leagueoflegends.com/cdn/16.22.1/img/champion/Lucian.png"
+          "img": "https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Lucian.png"
         }
       ],
       "statsNote": "Durchschnitt aus den letzten 20 Ranked-Spielen",
       "stats": [
         {
           "label": "Season W/L",
-          "value": "149 / 161"
+          "value": "150 / 161"
         },
         {
           "label": "Winrate",
@@ -149,19 +149,19 @@
         },
         {
           "label": "K/D",
-          "value": "1.17"
+          "value": "1.04"
         },
         {
           "label": "KDA",
-          "value": "2.89"
+          "value": "2.62"
         },
         {
           "label": "Ø K / D / A",
-          "value": "6 / 5.2 / 8.9"
+          "value": "5.8 / 5.7 / 8.9"
         },
         {
           "label": "Ø Schaden",
-          "value": "22.522"
+          "value": "22.905"
         },
         {
           "label": "CS / Min",

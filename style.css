@@ -23,7 +23,7 @@ body {
   font: 16px/1.6 "Inter", system-ui, sans-serif;
 }
 
-.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 16px; }
 
 h1, h2, h3 { font-family: "Rajdhani", sans-serif; letter-spacing: .02em; margin: 0; }
 h2 { font-size: 1.8rem; }
@@ -56,7 +56,7 @@ section { margin: 32px 0 56px; }
 .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
 .updated { color: var(--muted); font-size: .85rem; }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; align-items: start; }
 
 /* Game card */
 .card {
@@ -78,12 +78,11 @@ section { margin: 32px 0 56px; }
 .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .card h3 { font-size: 1.4rem; }
 .account { color: var(--muted); font-size: .85rem; }
-.badge {
-  font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap;
-  padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted);
+.level {
+  font: 700 .85rem "Rajdhani", sans-serif; letter-spacing: .04em; white-space: nowrap;
+  padding: 3px 10px; border-radius: 999px;
+  background: var(--bg-2); border: 1px solid var(--line); color: var(--text);
 }
-.badge.live { color: #4ade80; border-color: rgba(74, 222, 128, .4); }
-.badge.live::before { content: "● "; }
 
 .rank {
   display: flex; align-items: center; gap: 16px;
@@ -105,7 +104,23 @@ section { margin: 32px 0 56px; }
 .rank-name { font: 700 1.9rem/1.1 "Rajdhani", sans-serif; color: var(--tier); }
 .rank-points { color: var(--muted); font-size: .95rem; }
 .playlist { font-size: .85rem; color: var(--muted); }
-.extra { font-size: .85rem; }
+
+/* Stats */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+.stat {
+  display: flex; flex-direction: column; gap: 2px; min-width: 0;
+  padding: 8px 10px; border-radius: 10px; background: var(--bg-2); border: 1px solid var(--line);
+}
+.stat-value { font: 700 1.15rem/1.2 "Rajdhani", sans-serif; overflow-wrap: anywhere; }
+.stat-label { font-size: .72rem; color: var(--muted); }
+.stats-note { margin-top: 6px; font-size: .72rem; color: var(--muted); }
+
+.champs { display: grid; gap: 6px; }
+.champs-title { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.champ { display: grid; grid-template-columns: 32px 1fr; column-gap: 10px; align-items: center; }
+.champ img { width: 32px; height: 32px; border-radius: 8px; grid-row: span 2; background: var(--bg-2); }
+.champ-name { font-weight: 600; font-size: .9rem; line-height: 1.2; }
+.champ-meta { font-size: .75rem; color: var(--muted); line-height: 1.2; }
 
 .peak {
   display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px;

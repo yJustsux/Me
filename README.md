@@ -28,6 +28,12 @@ Jedes Spiel hat in `data/ranks.json` ein Feld `peak` (`rank`, `division`, `point
 Einmal von Hand eintragen, z. B. `"note": "Season 2024"`. Bei LoL und Apex setzt das stündliche Update
 den Peak automatisch hoch, sobald der aktuelle Rang höher ist. Leeres `rank` = keine Peak-Anzeige.
 
+## Stats
+
+- **LoL:** Level, Season-W/L, K/D, KDA, Ø Schaden, CS/Min und Top-3-Champions – berechnet aus den letzten 20 Ranked-Solo/Duo-Spielen (`LOL_MATCHES` in `scripts/fetch-ranks.mjs`).
+- **Apex:** Level, aktuelle Legende und Gesamtwerte. Die API kennt nur Werte von Trackern, die auf einem Banner ausgerüstet sind – mehr Tracker ausrüsten = mehr Stats.
+- **Rocket League:** manuell über ein `stats`-Feld, z. B. `"stats": [{ "label": "Siege", "value": "1.234" }]`.
+
 ## Rocket League
 
 Für Rocket League gibt es keine öffentliche API (tracker.gg gibt RL-Daten nicht frei).

@@ -21,6 +21,10 @@ jobs:
     # Zeitpläne laufen auf dem Standard-Branch – veröffentlicht wird aber nur von main
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    outputs:
+      build_type: ${{ steps.pages.outputs.build_type }}
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
 
@@ -35,6 +39,7 @@ jobs:
         run: node scripts/fetch-ranks.mjs
 
       - name: Neue Ränge committen (falls sich was geändert hat)
+        id: commit
         run: |
           git config user.name "rank-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -43,18 +48,37 @@ jobs:
           if git diff --cached -U0 data/ranks.json | grep -E '^[+-] ' | grep -vq '"updated"'; then
             git commit -m "Ränge aktualisiert"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "Keine Rang-Änderung."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
+      # Welche Pages-Einstellung ist aktiv? "workflow" = Source „GitHub Actions“,
+      # "legacy" = Source „Deploy from a branch“
+      - name: Pages-Einstellung erkennen
+        id: pages
+        run: |
+          type=$(gh api "repos/${{ github.repository }}/pages" --jq .build_type 2>/dev/null || echo none)
+          echo "Pages build_type: $type"
+          echo "build_type=$type" >> "$GITHUB_OUTPUT"
+
+      # „Deploy from a branch“: Pushes vom Bot lösen keinen Pages-Build aus → anstoßen
+      - name: Pages-Build anstoßen (Deploy from a branch)
+        if: steps.pages.outputs.build_type == 'legacy' && steps.commit.outputs.changed == 'true'
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
+
       - uses: actions/configure-pages@v5
+        if: steps.pages.outputs.build_type == 'workflow'
 
       - uses: actions/upload-pages-artifact@v3
+        if: steps.pages.outputs.build_type == 'workflow'
         with:
           path: .
 
   deploy:
     needs: build
+    if: needs.build.outputs.build_type == 'workflow'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

@@ -18,7 +18,7 @@ async function getJson(url, headers = {}) {
 const cap = (s) => (s ? s.charAt(0) + s.slice(1).toLowerCase() : s);
 
 async function updateLol() {
-  const key = process.env.RIOT_API_KEY;
+  const key = process.env.RIOT_API_KEY?.trim();
   if (!key) return console.log("LoL: kein RIOT_API_KEY – überspringe");
   const g = game("lol");
   const [name, tag] = g.account.split("#");
@@ -49,7 +49,7 @@ async function updateLol() {
 }
 
 async function updateApex() {
-  const key = process.env.APEX_API_KEY;
+  const key = process.env.APEX_API_KEY?.trim();
   if (!key) return console.log("Apex: kein APEX_API_KEY – überspringe");
   const g = game("apex");
   const res = await getJson(

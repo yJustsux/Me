@@ -18,6 +18,8 @@ concurrency:
 
 jobs:
   build:
+    # Zeitpläne laufen auf dem Standard-Branch – veröffentlicht wird aber nur von main
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

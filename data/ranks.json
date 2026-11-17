@@ -13,7 +13,13 @@
       "points": "",
       "pointsLabel": "MMR",
       "playlist": "Ranked Doubles 2v2",
-      "rankImg": ""
+      "rankImg": "",
+      "peak": {
+        "rank": "",
+        "division": "",
+        "points": "",
+        "note": ""
+      }
     },
     {
       "id": "apex",
@@ -27,7 +33,13 @@
       "points": "",
       "pointsLabel": "RP",
       "playlist": "Ranked Battle Royale",
-      "rankImg": ""
+      "rankImg": "",
+      "peak": {
+        "rank": "",
+        "division": "",
+        "points": "",
+        "note": ""
+      }
     },
     {
       "id": "lol",
@@ -42,7 +54,13 @@
       "pointsLabel": "LP",
       "playlist": "Ranked Solo/Duo",
       "rankImg": "",
-      "extra": ""
+      "extra": "",
+      "peak": {
+        "rank": "",
+        "division": "",
+        "points": "",
+        "note": ""
+      }
     }
   ]
 }

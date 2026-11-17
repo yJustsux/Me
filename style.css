@@ -100,6 +100,15 @@ section { margin: 32px 0 56px; }
 .playlist { font-size: .85rem; color: var(--muted); }
 .extra { font-size: .85rem; }
 
+.peak {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px;
+  padding: 10px 12px; border-radius: 10px;
+  background: var(--bg-2); border: 1px solid var(--line);
+}
+.peak-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.peak-rank { font: 700 1.1rem "Rajdhani", sans-serif; color: var(--peak); }
+.peak-note { font-size: .8rem; color: var(--muted); }
+
 .card a.more {
   margin-top: auto; color: var(--accent-2); text-decoration: none; font-size: .9rem; font-weight: 600;
 }

@@ -28,6 +28,19 @@ const el = (tag, attrs = {}, ...children) => {
   return n;
 };
 
+function peakRow(g) {
+  const p = g.peak;
+  if (!p || !p.rank) return null;
+  const text = [p.rank, p.division].filter(Boolean).join(" ");
+  const pts = p.points !== "" && p.points != null ? `${p.points} ${g.pointsLabel}` : "";
+  const note = [pts, p.note].filter(Boolean).join(" · ");
+  return el("div", { class: "peak", style: `--peak:${tierColor(p.rank)}` },
+    el("span", { class: "peak-label" }, "🏆 Peak"),
+    el("span", { class: "peak-rank" }, text),
+    note ? el("span", { class: "peak-note" }, note) : null
+  );
+}
+
 function gameCard(g) {
   const rankText = [g.rank, g.division].filter(Boolean).join(" ");
   const icon = el("div", { class: "rank-icon" + (g.rankImg ? " has-img" : "") });
@@ -51,6 +64,7 @@ function gameCard(g) {
       )
     ),
     g.extra ? el("div", { class: "extra" }, g.extra) : null,
+    peakRow(g),
     el("a", { class: "more", href: g.profileUrl, target: "_blank", rel: "noopener" }, "Volles Profil ansehen →")
   );
 }

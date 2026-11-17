@@ -70,10 +70,49 @@ async function updateApex() {
 // Rocket League: Es gibt keine offene API (tracker.gg gibt RL-Daten nicht frei)
 // → Rang wird manuell in data/ranks.json gepflegt.
 
+// --- Peak: höchsten je gesehenen Rang merken ---------------------------------
+const TIERS = {
+  lol: ["iron", "bronze", "silver", "gold", "platinum", "emerald", "diamond", "master", "grandmaster", "challenger"],
+  apex: ["rookie", "bronze", "silver", "gold", "platinum", "diamond", "master", "apex predator"],
+  rocketleague: ["bronze", "silver", "gold", "platinum", "diamond", "champion", "grand champion", "supersonic legend"],
+};
+const ROMAN = { I: 1, II: 2, III: 3, IV: 4 };
+
+// Vergleichswert: [Stufe, Division (höher = besser), Punkte]
+function score(id, r) {
+  const tier = TIERS[id]?.indexOf(String(r.rank || "").toLowerCase()) ?? -1;
+  if (tier < 0) return null;
+  const div = String(r.division || "").toUpperCase();
+  const n = ROMAN[div] ?? (Number(div) || 0);
+  const divScore = id === "rocketleague" ? n : n ? 5 - n : 5; // LoL/Apex: Div 1 ist die beste
+  return [tier, divScore, Number(r.points) || 0];
+}
+function higher(a, b) {
+  if (!b) return true;
+  for (let i = 0; i < 3; i++) if (a[i] !== b[i]) return a[i] > b[i];
+  return false;
+}
+
+function updatePeak(g) {
+  const now = score(g.id, g);
+  if (!now) return;
+  const peak = g.peak && g.peak.rank ? score(g.id, g.peak) : null;
+  if (higher(now, peak)) {
+    g.peak = {
+      rank: g.rank,
+      division: g.division,
+      points: g.points,
+      note: `erreicht am ${new Date().toLocaleDateString("de-DE")}`,
+    };
+    console.log(`${g.name}: neuer Peak → ${g.rank} ${g.division}`);
+  }
+}
+
 let ok = true;
-for (const fn of [updateLol, updateApex]) {
+for (const [id, fn] of [["lol", updateLol], ["apex", updateApex]]) {
   try {
     await fn();
+    if (game(id).source === "live") updatePeak(game(id));
   } catch (e) {
     ok = false;
     console.error(`Fehler: ${e.message}`);

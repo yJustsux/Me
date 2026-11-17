@@ -22,6 +22,12 @@ Persönliche Webseite mit meinen aktuellen Rängen in **Rocket League**, **Apex 
 
 Ohne Keys funktioniert die Seite trotzdem, dann werden einfach die Werte aus `data/ranks.json` angezeigt.
 
+## Peak (höchster Rang)
+
+Jedes Spiel hat in `data/ranks.json` ein Feld `peak` (`rank`, `division`, `points`, `note`).
+Einmal von Hand eintragen, z. B. `"note": "Season 2024"`. Bei LoL und Apex setzt das stündliche Update
+den Peak automatisch hoch, sobald der aktuelle Rang höher ist. Leeres `rank` = keine Peak-Anzeige.
+
 ## Rocket League
 
 Für Rocket League gibt es keine öffentliche API (tracker.gg gibt RL-Daten nicht frei).

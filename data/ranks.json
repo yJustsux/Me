@@ -15,8 +15,8 @@
       "playlist": "Ranked Doubles 2v2",
       "rankImg": "",
       "peak": {
-        "rank": "",
-        "division": "",
+        "rank": "Champion",
+        "division": "I",
         "points": "",
         "note": ""
       }
@@ -35,7 +35,7 @@
       "playlist": "Ranked Battle Royale",
       "rankImg": "",
       "peak": {
-        "rank": "",
+        "rank": "Master",
         "division": "",
         "points": "",
         "note": ""
@@ -56,8 +56,8 @@
       "rankImg": "",
       "extra": "",
       "peak": {
-        "rank": "",
-        "division": "",
+        "rank": "Silver",
+        "division": "II",
         "points": "",
         "note": ""
       }

@@ -1,18 +1,36 @@
 {
   "name": "yJustusx",
-  "tagline": "Gamer · Rocket League · Apex · League of Legends",
+  "tagline": "Streamer · Gamer · Rocket League · Apex · League of Legends",
   "about": [
-    "Platzhalter: Hier steht bald ein bisschen was über mich.",
-    "Platzhalter: Was ich gerne spiele, seit wann ich zocke und was mich sonst so ausmacht."
+    "Moin, ich bin Justus! ✌️ Ich streame aus Leidenschaft und liebe den Nervenkitzel in kompetitiven Games.",
+    "Wenn ich nicht gerade in einem Shooter um den Sieg kämpfe, versuche ich in Survival-Games nicht zu verhungern."
   ],
   "facts": [
-    { "label": "Main-Game", "value": "Platzhalter" },
-    { "label": "Plattform", "value": "PC" },
-    { "label": "Aus", "value": "Platzhalter" }
+    {
+      "label": "Main-Game",
+      "value": "Platzhalter"
+    },
+    {
+      "label": "Plattform",
+      "value": "PC"
+    },
+    {
+      "label": "Aus",
+      "value": "Platzhalter"
+    }
   ],
   "socials": [
-    { "name": "Discord", "url": "" },
-    { "name": "Twitch", "url": "" },
-    { "name": "YouTube", "url": "" }
+    {
+      "name": "Discord",
+      "url": ""
+    },
+    {
+      "name": "Twitch",
+      "url": ""
+    },
+    {
+      "name": "YouTube",
+      "url": ""
+    }
   ]
 }

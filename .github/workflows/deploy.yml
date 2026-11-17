@@ -1,0 +1,62 @@
+name: Ränge aktualisieren & Seite veröffentlichen
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 * * * *" # jede Stunde
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Ränge abrufen
+        env:
+          RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
+          APEX_API_KEY: ${{ secrets.APEX_API_KEY }}
+        run: node scripts/fetch-ranks.mjs
+
+      - name: Neue Ränge committen (falls sich was geändert hat)
+        run: |
+          git config user.name "rank-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ranks.json
+          # nur committen, wenn sich mehr als der Zeitstempel geändert hat
+          if git diff --cached -U0 data/ranks.json | grep -E '^[+-] ' | grep -vq '"updated"'; then
+            git commit -m "Ränge aktualisiert"
+            git push
+          else
+            echo "Keine Rang-Änderung."
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

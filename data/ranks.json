@@ -1,0 +1,48 @@
+{
+  "updated": null,
+  "games": [
+    {
+      "id": "rocketleague",
+      "name": "Rocket League",
+      "account": "yJustusx",
+      "platform": "Epic",
+      "profileUrl": "https://rocketleague.tracker.network/rocket-league/profile/epic/yJustusx/overview",
+      "source": "manual",
+      "rank": "Platzhalter",
+      "division": "",
+      "points": "",
+      "pointsLabel": "MMR",
+      "playlist": "Ranked Doubles 2v2",
+      "rankImg": ""
+    },
+    {
+      "id": "apex",
+      "name": "Apex Legends",
+      "account": "yJustusx",
+      "platform": "Origin / PC",
+      "profileUrl": "https://apex.tracker.gg/apex/profile/origin/yJustusx/overview",
+      "source": "manual",
+      "rank": "Platzhalter",
+      "division": "",
+      "points": "",
+      "pointsLabel": "RP",
+      "playlist": "Ranked Battle Royale",
+      "rankImg": ""
+    },
+    {
+      "id": "lol",
+      "name": "League of Legends",
+      "account": "xJustus#187",
+      "platform": "EUW",
+      "profileUrl": "https://op.gg/lol/summoners/euw/xJustus-187",
+      "source": "manual",
+      "rank": "Platzhalter",
+      "division": "",
+      "points": "",
+      "pointsLabel": "LP",
+      "playlist": "Ranked Solo/Duo",
+      "rankImg": "",
+      "extra": ""
+    }
+  ]
+}

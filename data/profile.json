@@ -1,0 +1,18 @@
+{
+  "name": "yJustusx",
+  "tagline": "Gamer · Rocket League · Apex · League of Legends",
+  "about": [
+    "Platzhalter: Hier steht bald ein bisschen was über mich.",
+    "Platzhalter: Was ich gerne spiele, seit wann ich zocke und was mich sonst so ausmacht."
+  ],
+  "facts": [
+    { "label": "Main-Game", "value": "Platzhalter" },
+    { "label": "Plattform", "value": "PC" },
+    { "label": "Aus", "value": "Platzhalter" }
+  ],
+  "socials": [
+    { "name": "Discord", "url": "" },
+    { "name": "Twitch", "url": "" },
+    { "name": "YouTube", "url": "" }
+  ]
+}

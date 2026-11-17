@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>yJustusx</title>
+  <meta name="description" content="Meine Games, meine aktuellen Ränge und ein bisschen über mich.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="avatar" aria-hidden="true" id="avatar">Y</div>
+      <div>
+        <h1 id="name">yJustusx</h1>
+        <p class="tagline" id="tagline"></p>
+        <nav class="socials" id="socials"></nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section aria-labelledby="ranks-title">
+      <div class="section-head">
+        <h2 id="ranks-title">Aktuelle Ränge</h2>
+        <span class="updated" id="updated"></span>
+      </div>
+      <div class="grid" id="games">
+        <p class="muted">Lade Ränge …</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="about-title" class="about">
+      <h2 id="about-title">Über mich</h2>
+      <div class="about-grid">
+        <div id="about-text"></div>
+        <dl class="facts" id="facts"></dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap muted">
+    Ränge werden stündlich automatisch aktualisiert · Daten: Riot Games, Apex Legends Status
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

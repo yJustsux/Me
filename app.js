@@ -41,6 +41,32 @@ function peakRow(g) {
   );
 }
 
+function statsGrid(g) {
+  const stats = (g.stats || []).filter((s) => s && s.label && s.value !== "" && s.value != null);
+  if (!stats.length) return null;
+  return el("div", { class: "stats" },
+    el("div", { class: "stats-grid" },
+      stats.map((s) => el("div", { class: "stat" },
+        el("span", { class: "stat-value" }, String(s.value)),
+        el("span", { class: "stat-label" }, s.label)
+      ))
+    ),
+    g.statsNote ? el("div", { class: "stats-note" }, g.statsNote) : null
+  );
+}
+
+function championList(g) {
+  if (!g.champions || !g.champions.length) return null;
+  return el("div", { class: "champs" },
+    el("div", { class: "champs-title" }, "Meistgespielt"),
+    g.champions.map((c) => el("div", { class: "champ" },
+      el("img", { src: c.img, alt: "", loading: "lazy", width: "32", height: "32", onerror: "this.style.visibility='hidden'" }),
+      el("span", { class: "champ-name" }, c.name),
+      el("span", { class: "champ-meta" }, `${c.games} ${c.games === 1 ? "Spiel" : "Spiele"} · ${c.winrate} % · ${c.kda} KDA`)
+    ))
+  );
+}
+
 function gameCard(g) {
   const rankText = [g.rank, g.division].filter(Boolean).join(" ");
   const icon = el("div", { class: "rank-icon" + (g.rankImg ? " has-img" : "") });
@@ -53,7 +79,7 @@ function gameCard(g) {
         el("h3", {}, g.name),
         el("div", { class: "account" }, `${g.account} · ${g.platform}`)
       ),
-      el("span", { class: "badge" + (g.source === "live" ? " live" : "") }, g.source === "live" ? "Live" : "Manuell")
+      g.level != null && g.level !== "" ? el("span", { class: "level" }, `Lvl ${g.level}`) : null
     ),
     el("a", { class: "rank", href: g.profileUrl, target: "_blank", rel: "noopener", title: `${g.name}-Profil auf dem Tracker öffnen` },
       icon,
@@ -63,8 +89,9 @@ function gameCard(g) {
         el("div", { class: "playlist" }, g.playlist)
       )
     ),
-    g.extra ? el("div", { class: "extra" }, g.extra) : null,
     peakRow(g),
+    statsGrid(g),
+    championList(g),
     el("a", { class: "more", href: g.profileUrl, target: "_blank", rel: "noopener" }, "Volles Profil ansehen →")
   );
 }

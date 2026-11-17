@@ -19,7 +19,38 @@
         "division": "I",
         "points": "",
         "note": ""
-      }
+      },
+      "stats": [
+        {
+          "label": "Siege",
+          "value": "4.589"
+        },
+        {
+          "label": "Tore",
+          "value": "10.703"
+        },
+        {
+          "label": "Assists",
+          "value": "4.544"
+        },
+        {
+          "label": "MVPs",
+          "value": "1.641"
+        },
+        {
+          "label": "Schüsse",
+          "value": "21.745"
+        },
+        {
+          "label": "Paraden",
+          "value": "9.946"
+        },
+        {
+          "label": "Trefferquote",
+          "value": "49,2 %"
+        }
+      ],
+      "statsNote": "Gesamtwerte laut RL Tracker · Stand 17.11.2026"
     },
     {
       "id": "apex",

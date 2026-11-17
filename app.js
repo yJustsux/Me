@@ -55,7 +55,7 @@ function gameCard(g) {
       ),
       el("span", { class: "badge" + (g.source === "live" ? " live" : "") }, g.source === "live" ? "Live" : "Manuell")
     ),
-    el("div", { class: "rank" },
+    el("a", { class: "rank", href: g.profileUrl, target: "_blank", rel: "noopener", title: `${g.name}-Profil auf dem Tracker öffnen` },
       icon,
       el("div", {},
         el("div", { class: "rank-name" }, rankText || "Unranked"),

@@ -85,7 +85,14 @@ section { margin: 32px 0 56px; }
 .badge.live { color: #4ade80; border-color: rgba(74, 222, 128, .4); }
 .badge.live::before { content: "● "; }
 
-.rank { display: flex; align-items: center; gap: 16px; }
+.rank {
+  display: flex; align-items: center; gap: 16px;
+  color: inherit; text-decoration: none;
+  margin: -8px; padding: 8px; border-radius: 12px;
+  transition: background .2s;
+}
+.rank:hover, .rank:focus-visible { background: rgba(255, 255, 255, .04); }
+.rank:hover .rank-name::after, .rank:focus-visible .rank-name::after { content: " ↗"; font-size: .7em; opacity: .7; }
 .rank-icon {
   width: 72px; height: 72px; flex: none; border-radius: 50%;
   display: grid; place-items: center;

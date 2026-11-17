@@ -1,0 +1,32 @@
+{
+  "name": "yJustusx",
+  "tagline": "Streamer · Gamer · Rocket League · Apex · League of Legends",
+  "about": [
+    "Moin, ich bin Justus! ✌️ Ich streame aus Leidenschaft und liebe den Nervenkitzel in kompetitiven Games.",
+    "Wenn ich nicht gerade in einem Shooter um den Sieg kämpfe, versuche ich in Survival-Games nicht zu verhungern."
+  ],
+  "facts": [
+    {
+      "label": "Main-Game",
+      "value": "Apex Legends"
+    },
+    {
+      "label": "Plattform",
+      "value": "PC"
+    },
+    {
+      "label": "Aus",
+      "value": "Baden-Württemberg"
+    }
+  ],
+  "socials": [
+    {
+      "name": "Twitch",
+      "url": "https://www.twitch.tv/yjustusx"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/yjustinx/"
+    }
+  ]
+}

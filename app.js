@@ -35,7 +35,7 @@ function peakRow(g) {
   const pts = p.points !== "" && p.points != null ? `${p.points} ${g.pointsLabel}` : "";
   const note = [pts, p.note].filter(Boolean).join(" · ");
   return el("div", { class: "peak", style: `--peak:${tierColor(p.rank)}` },
-    el("span", { class: "peak-label" }, "🏆 Peak"),
+    el("span", { class: "peak-label" }, "🏆 All-Time Peak"),
     el("span", { class: "peak-rank" }, text),
     note ? el("span", { class: "peak-note" }, note) : null
   );

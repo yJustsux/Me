@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T20:13:51.526Z",
+  "updated": "2026-11-17T21:02:07.998Z",
   "games": [
     {
       "id": "rocketleague",
@@ -102,7 +102,7 @@
       "source": "live",
       "rank": "Iron",
       "division": "I",
-      "points": 84,
+      "points": 63,
       "pointsLabel": "LP",
       "playlist": "Ranked Solo/Duo",
       "rankImg": "",
@@ -141,7 +141,7 @@
       "stats": [
         {
           "label": "Season W/L",
-          "value": "149 / 160"
+          "value": "149 / 161"
         },
         {
           "label": "Winrate",
@@ -149,19 +149,19 @@
         },
         {
           "label": "K/D",
-          "value": "1.22"
+          "value": "1.17"
         },
         {
           "label": "KDA",
-          "value": "3.04"
+          "value": "2.89"
         },
         {
           "label": "Ø K / D / A",
-          "value": "6 / 5 / 9"
+          "value": "6 / 5.2 / 8.9"
         },
         {
           "label": "Ø Schaden",
-          "value": "23.193"
+          "value": "22.522"
         },
         {
           "label": "CS / Min",

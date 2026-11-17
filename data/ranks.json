@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T16:33:25.355Z",
+  "updated": "2026-11-17T17:33:32.035Z",
   "games": [
     {
       "id": "rocketleague",
@@ -47,14 +47,14 @@
       "account": "xJustus#187",
       "platform": "EUW",
       "profileUrl": "https://op.gg/lol/summoners/euw/xJustus-187",
-      "source": "manual",
-      "rank": "Platzhalter",
-      "division": "",
-      "points": "",
+      "source": "live",
+      "rank": "Iron",
+      "division": "I",
+      "points": 31,
       "pointsLabel": "LP",
       "playlist": "Ranked Solo/Duo",
       "rankImg": "",
-      "extra": "",
+      "extra": "146W / 160L · 48% WR",
       "peak": {
         "rank": "Silver",
         "division": "II",

@@ -70,31 +70,45 @@ function championList(g) {
 function gameCard(g) {
   const rankText = [g.rank, g.division].filter(Boolean).join(" ");
   const icon = el("div", { class: "rank-icon" + (g.rankImg ? " has-img" : "") });
-  if (g.rankImg) icon.append(el("img", { src: g.rankImg, alt: rankText, loading: "lazy" }));
-  else icon.textContent = (g.rank || "?").charAt(0).toUpperCase();
+  const letter = (g.rank || "?").charAt(0).toUpperCase();
+  if (g.rankImg) {
+    const img = el("img", { src: g.rankImg, alt: rankText, loading: "lazy" });
+    // Bild lädt nicht → Buchstabe statt kaputtem Bild
+    img.addEventListener("error", () => { icon.className = "rank-icon"; icon.textContent = letter; });
+    icon.append(img);
+  } else icon.textContent = letter;
 
-  return el("article", { class: "card", style: `--tier:${tierColor(g.rank)}` },
-    el("div", { class: "card-top" },
-      el("div", {},
-        el("h3", {}, g.name),
-        el("div", { class: "account" }, `${g.account} · ${g.platform}`)
-      ),
-      g.level != null && g.level !== "" ? el("span", { class: "level" }, `Lvl ${g.level}`) : null
+  // Kopf (Name, Account, Level) und Stats – stehen neben dem Rang-Feld
+  const head = el("div", { class: "card-top" },
+    el("div", {},
+      el("h3", {}, g.name),
+      el("div", { class: "account" }, `${g.account} · ${g.platform}`)
     ),
-    el("a", { class: "rank", href: g.profileUrl, target: "_blank", rel: "noopener", title: `${g.name}-Profil auf dem Tracker öffnen` },
-      icon,
-      el("div", {},
-        el("div", { class: "rank-name" }, rankText || "Unranked"),
-        g.points !== "" && g.points != null ? el("div", { class: "rank-points" }, `${g.points} ${g.pointsLabel}`) : null,
-        el("div", { class: "playlist" }, g.playlist)
-      )
-    ),
-    peakRow(g),
+    g.level != null && g.level !== "" ? el("span", { class: "level" }, `Lvl ${g.level}`) : null
+  );
+  const body = el("div", { class: "card-body" },
     statsGrid(g),
     championList(g),
     el("a", { class: "more", href: g.profileUrl, target: "_blank", rel: "noopener" }, "Volles Profil ansehen →")
   );
+
+  // Großes Rang-Feld
+  const rankPanel = el("div", { class: "rank-panel" },
+    el("a", { class: "rank", href: g.profileUrl, target: "_blank", rel: "noopener", title: `${g.name}-Profil auf dem Tracker öffnen` },
+      icon,
+      el("div", { class: "rank-name" }, rankText || "Unranked"),
+      g.points !== "" && g.points != null ? el("div", { class: "rank-points" }, `${g.points} ${g.pointsLabel}`) : null,
+      el("div", { class: "playlist" }, g.playlist)
+    ),
+    peakRow(g)
+  );
+
+  return el("article", { class: "card", style: `--tier:${tierColor(g.rank)}` }, head, body, rankPanel);
 }
+
+// Reihenfolge auf der Seite (wie in der Skizze)
+const ORDER = ["lol", "apex", "rocketleague"];
+const byOrder = (a, b) => (ORDER.indexOf(a.id) + 1 || 99) - (ORDER.indexOf(b.id) + 1 || 99);
 
 async function load(path) {
   const res = await fetch(path, { cache: "no-store" });
@@ -123,7 +137,7 @@ async function load(path) {
   const games = document.getElementById("games");
   try {
     const r = await load("data/ranks.json");
-    games.replaceChildren(...r.games.map(gameCard));
+    games.replaceChildren(...[...r.games].sort(byOrder).map(gameCard));
     if (r.updated) {
       const d = new Date(r.updated);
       document.getElementById("updated").textContent =

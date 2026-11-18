@@ -4,29 +4,55 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>yJustusx</title>
-  <meta name="description" content="Meine Games, meine aktuellen Ränge und ein bisschen über mich.">
+  <meta name="description" content="Streamer &amp; Gamer – meine aktuellen Ränge in Apex Legends, League of Legends und Rocket League.">
+  <meta name="theme-color" content="#121317">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- ============ HERO ============ -->
   <header class="hero">
-    <div class="wrap">
-      <div class="avatar" aria-hidden="true" id="avatar">Y</div>
-      <div>
-        <h1 id="name">yJustusx</h1>
-        <p class="tagline" id="tagline"></p>
-        <nav class="socials" id="socials"></nav>
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="kicker"><span class="kicker-line"></span><span id="kicker">Streamer / Gamer</span></p>
+        <h1 class="headline" id="headline">PLAY.<br>STREAM.<br>RANK UP<span class="dot">.</span></h1>
+        <p class="hero-intro" id="hero-intro"></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" id="hero-twitch" href="#live">Zum Stream <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-ghost" href="#raenge">Meine Ränge <span aria-hidden="true">↓</span></a>
+        </div>
+        <ul class="hero-tags" id="hero-tags" aria-label="Games"></ul>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="crosshair"></div>
+        <div class="monogram" id="monogram">YJ</div>
+        <div class="sticker sticker-a"><small>Main</small><strong id="sticker-main">Apex</strong></div>
+        <div class="sticker sticker-b"><strong id="sticker-level">LVL —</strong><small id="sticker-level-game">Apex Legends</small></div>
+        <div class="sticker sticker-c">
+          <span class="barcode"></span>
+          <small id="sticker-handle">yJustusx</small>
+        </div>
+        <p class="scribble scribble-a">same squad,<br>new rank.</p>
+        <svg class="arrow arrow-a" viewBox="0 0 120 60"><path d="M4 8 C 40 4, 70 20, 100 46" /><path d="M86 44 L101 47 L98 32" /></svg>
+        <span class="tag-no">01</span>
       </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <section aria-labelledby="ranks-title">
+  <!-- Laufband -->
+  <div class="marquee marquee-teal" aria-hidden="true"><div class="marquee-track" data-marquee="primary"></div></div>
+
+  <main>
+    <!-- ============ RÄNGE ============ -->
+    <section class="section wrap" id="raenge" aria-labelledby="ranks-title">
       <div class="section-head">
-        <h2 id="ranks-title">Aktuelle Ränge</h2>
+        <p class="section-no">01 <span>/ Ranked</span></p>
+        <h2 id="ranks-title" class="section-title">Aktuelle Ränge<span class="dot">.</span></h2>
         <span class="updated" id="updated"></span>
       </div>
       <div class="grid" id="games">
@@ -34,17 +60,53 @@
       </div>
     </section>
 
-    <section aria-labelledby="about-title" class="about">
-      <h2 id="about-title">Über mich</h2>
-      <div class="about-grid">
-        <div id="about-text"></div>
-        <dl class="facts" id="facts"></dl>
+    <!-- ============ TWITCH ============ -->
+    <section class="live" id="live" aria-labelledby="live-title">
+      <div class="wrap live-grid">
+        <div class="live-text">
+          <p class="section-no">02 <span>/ Live</span></p>
+          <h2 id="live-title" class="section-title big">Komm in<br>den Stream<span class="dot">.</span></h2>
+          <p class="live-intro">Ranked-Grind, Clutches, Fails – live und ungeschnitten. Schau vorbei, sag Hallo im Chat und lass ein Follow da.</p>
+          <a class="btn btn-twitch" id="twitch-btn" href="#" target="_blank" rel="noopener">Auf Twitch folgen <span aria-hidden="true">↗</span></a>
+          <p class="scribble scribble-live">Chat ist<br>immer willkommen!</p>
+        </div>
+        <div class="player-frame">
+          <div class="player-bar"><span class="rec">● LIVE?</span><span id="twitch-name">twitch.tv/yjustusx</span></div>
+          <div class="player" id="player"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee marquee-pink" aria-hidden="true"><div class="marquee-track reverse" data-marquee="secondary"></div></div>
+
+    <!-- ============ ÜBER MICH ============ -->
+    <section class="about" aria-labelledby="about-title">
+      <div class="wrap about-grid">
+        <div>
+          <p class="section-no dark">03 <span>/ Über mich</span></p>
+          <h2 id="about-title" class="section-title big">Moin, ich bin<br>Justus<span class="dot">.</span></h2>
+        </div>
+        <div class="about-body">
+          <div id="about-text"></div>
+          <dl class="facts" id="facts"></dl>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="wrap muted">
-    Ränge werden stündlich automatisch aktualisiert · Daten: Riot Games, Apex Legends Status
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <h2 class="section-title big">Let's play<span class="dot">.</span></h2>
+      <div>
+        <p class="muted">Folg mir, schreib mir oder komm einfach in den nächsten Stream.</p>
+        <nav class="socials" id="socials"></nav>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span class="logo" id="footer-name">yJustusx</span>
+      <span>Ränge werden stündlich automatisch aktualisiert · Daten: Riot Games, Apex Legends Status, RL Tracker</span>
+    </div>
   </footer>
 
   <script src="app.js"></script>

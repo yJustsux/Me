@@ -152,6 +152,8 @@ async function updateApex() {
 
   // "total" enthält z. B. { kills: {name, value}, damage: {...}, kd: {value: "-1"} }
   const wanted = [
+    ["career_kills", "Karriere-Kills"],
+    ["career_wins", "Karriere-Siege"],
     ["kills", "Kills"],
     ["damage", "Schaden"],
     ["kd", "K/D"],

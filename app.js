@@ -84,7 +84,7 @@ function gameCard(g) {
       el("h3", {}, g.name),
       el("div", { class: "account" }, `${g.account} · ${g.platform}`)
     ),
-    g.level != null && g.level !== "" ? el("span", { class: "level" }, `Lvl ${g.level}`) : null
+    g.level != null && g.level !== "" ? el("span", { class: "level" }, (g.prestige ? `Prestige ${g.prestige} · ` : "") + `Lvl ${g.level}`) : null
   );
   const body = el("div", { class: "card-body" },
     statsGrid(g),
@@ -220,7 +220,7 @@ function renderTwitch(channel) {
     const lvlGame = withLvl.find((g) => g.name === mainName) || withLvl.sort((a, b) => b.level - a.level)[0];
     if (lvlGame) {
       document.getElementById("sticker-level").textContent = `LVL ${lvlGame.level}`;
-      document.getElementById("sticker-level-game").textContent = lvlGame.name;
+      document.getElementById("sticker-level-game").textContent = (lvlGame.prestige ? `Prestige ${lvlGame.prestige} · ` : "") + lvlGame.name;
     }
   } catch (e) {
     console.error(e);

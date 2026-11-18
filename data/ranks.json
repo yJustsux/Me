@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T21:59:38.230Z",
+  "updated": "2026-11-18T15:09:29.447Z",
   "games": [
     {
       "id": "rocketleague",
@@ -77,6 +77,14 @@
         {
           "label": "Legende",
           "value": "Pathfinder"
+        },
+        {
+          "label": "Karriere-Kills",
+          "value": "3.781"
+        },
+        {
+          "label": "Karriere-Siege",
+          "value": "263"
         },
         {
           "label": "Kills",

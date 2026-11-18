@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T15:39:28.171Z",
+  "updated": "2026-11-18T16:09:55.445Z",
   "games": [
     {
       "id": "rocketleague",
@@ -111,7 +111,7 @@
       "source": "live",
       "rank": "Iron",
       "division": "I",
-      "points": 81,
+      "points": 60,
       "pointsLabel": "LP",
       "playlist": "Ranked Solo/Duo",
       "rankImg": "",
@@ -126,16 +126,16 @@
       "champions": [
         {
           "name": "Zeri",
-          "games": 8,
-          "winrate": 25,
-          "kda": "2.52",
+          "games": 9,
+          "winrate": 22,
+          "kda": "2.24",
           "img": "https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Zeri.png"
         },
         {
           "name": "Tristana",
-          "games": 5,
-          "winrate": 60,
-          "kda": "4.50",
+          "games": 3,
+          "winrate": 67,
+          "kda": "4.36",
           "img": "https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Tristana.png"
         },
         {
@@ -146,11 +146,11 @@
           "img": "https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Lucian.png"
         }
       ],
-      "statsNote": "Durchschnitt aus den letzten 20 Ranked-Spielen",
+      "statsNote": "Durchschnitt aus den letzten 19 Ranked-Spielen",
       "stats": [
         {
           "label": "Season W/L",
-          "value": "150 / 161"
+          "value": "150 / 162"
         },
         {
           "label": "Winrate",
@@ -158,27 +158,27 @@
         },
         {
           "label": "K/D",
-          "value": "1.04"
+          "value": "0.94"
         },
         {
           "label": "KDA",
-          "value": "2.62"
+          "value": "2.38"
         },
         {
           "label": "Ø K / D / A",
-          "value": "5.8 / 5.7 / 8.9"
+          "value": "5.9 / 6.3 / 9.1"
         },
         {
           "label": "Ø Schaden",
-          "value": "22.905"
+          "value": "23.022"
         },
         {
           "label": "CS / Min",
-          "value": "6.2"
+          "value": "6.1"
         },
         {
-          "label": "Winrate (letzte 20)",
-          "value": "50 %"
+          "label": "Winrate (letzte 19)",
+          "value": "47 %"
         }
       ]
     }

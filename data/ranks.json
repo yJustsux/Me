@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T15:09:29.447Z",
+  "updated": "2026-11-18T15:39:28.171Z",
   "games": [
     {
       "id": "rocketleague",
@@ -100,7 +100,7 @@
         }
       ],
       "statsNote": "Gesamtwerte laut Banner-Trackern",
-      "prestige": 2
+      "prestige": 1
     },
     {
       "id": "lol",

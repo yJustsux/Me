@@ -124,8 +124,11 @@ function renderHeadline(lines) {
   lines.forEach((line, i) => {
     if (i) h.append(el("br"));
     const last = i === lines.length - 1;
-    if (last && line.endsWith(".")) h.append(line.slice(0, -1), el("span", { class: "dot" }, "."));
-    else h.append(line);
+    if (!last) return h.append(line);
+    // letzte Zeile im Sprühdosen-Verlauf, Punkt pink
+    const text = line.endsWith(".") ? line.slice(0, -1) : line;
+    h.append(el("span", { class: "spray-text" }, text));
+    if (line.endsWith(".")) h.append(el("span", { class: "dot" }, "."));
   });
 }
 

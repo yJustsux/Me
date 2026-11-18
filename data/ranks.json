@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T16:09:55.445Z",
+  "updated": "2026-11-18T17:15:36.383Z",
   "games": [
     {
       "id": "rocketleague",
@@ -111,7 +111,7 @@
       "source": "live",
       "rank": "Iron",
       "division": "I",
-      "points": 60,
+      "points": 38,
       "pointsLabel": "LP",
       "playlist": "Ranked Solo/Duo",
       "rankImg": "",
@@ -126,17 +126,10 @@
       "champions": [
         {
           "name": "Zeri",
-          "games": 9,
-          "winrate": 22,
-          "kda": "2.24",
+          "games": 10,
+          "winrate": 20,
+          "kda": "2.12",
           "img": "https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Zeri.png"
-        },
-        {
-          "name": "Tristana",
-          "games": 3,
-          "winrate": 67,
-          "kda": "4.36",
-          "img": "https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Tristana.png"
         },
         {
           "name": "Lucian",
@@ -144,13 +137,20 @@
           "winrate": 50,
           "kda": "1.70",
           "img": "https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Lucian.png"
+        },
+        {
+          "name": "Tristana",
+          "games": 2,
+          "winrate": 100,
+          "kda": "4.17",
+          "img": "https://ddragon.leagueoflegends.com/cdn/16.23.1/img/champion/Tristana.png"
         }
       ],
       "statsNote": "Durchschnitt aus den letzten 19 Ranked-Spielen",
       "stats": [
         {
           "label": "Season W/L",
-          "value": "150 / 162"
+          "value": "150 / 163"
         },
         {
           "label": "Winrate",
@@ -158,23 +158,23 @@
         },
         {
           "label": "K/D",
-          "value": "0.94"
+          "value": "0.84"
         },
         {
           "label": "KDA",
-          "value": "2.38"
+          "value": "2.21"
         },
         {
           "label": "Ø K / D / A",
-          "value": "5.9 / 6.3 / 9.1"
+          "value": "5.3 / 6.3 / 8.6"
         },
         {
           "label": "Ø Schaden",
-          "value": "23.022"
+          "value": "20.889"
         },
         {
           "label": "CS / Min",
-          "value": "6.1"
+          "value": "5.9"
         },
         {
           "label": "Winrate (letzte 19)",

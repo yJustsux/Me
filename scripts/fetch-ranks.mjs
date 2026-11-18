@@ -135,6 +135,8 @@ async function updateApex() {
   // Achtung: Die API kennt nur Werte von Trackern, die auf einem Banner ausgerüstet sind.
   const gl = res.global || {};
   g.level = gl.level ?? g.level;
+  // Prestige (Apex setzt das Level nach 500 zurück) – fehlt der Wert, bleibt der manuelle stehen
+  if (Number.isFinite(Number(gl.levelPrestige)) && Number(gl.levelPrestige) > 0) g.prestige = Number(gl.levelPrestige);
   const legend = res.legends?.selected;
   g.avatar = legend?.ImgAssets?.icon || g.avatar || "";
 

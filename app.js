@@ -70,31 +70,45 @@ function championList(g) {
 function gameCard(g) {
   const rankText = [g.rank, g.division].filter(Boolean).join(" ");
   const icon = el("div", { class: "rank-icon" + (g.rankImg ? " has-img" : "") });
-  if (g.rankImg) icon.append(el("img", { src: g.rankImg, alt: rankText, loading: "lazy" }));
-  else icon.textContent = (g.rank || "?").charAt(0).toUpperCase();
+  const letter = (g.rank || "?").charAt(0).toUpperCase();
+  if (g.rankImg) {
+    const img = el("img", { src: g.rankImg, alt: rankText, loading: "lazy" });
+    // Bild lädt nicht → Buchstabe statt kaputtem Bild
+    img.addEventListener("error", () => { icon.className = "rank-icon"; icon.textContent = letter; });
+    icon.append(img);
+  } else icon.textContent = letter;
 
-  return el("article", { class: "card", style: `--tier:${tierColor(g.rank)}` },
-    el("div", { class: "card-top" },
-      el("div", {},
-        el("h3", {}, g.name),
-        el("div", { class: "account" }, `${g.account} · ${g.platform}`)
-      ),
-      g.level != null && g.level !== "" ? el("span", { class: "level" }, `Lvl ${g.level}`) : null
+  // Kopf (Name, Account, Level) und Stats – stehen neben dem Rang-Feld
+  const head = el("div", { class: "card-top" },
+    el("div", {},
+      el("h3", {}, g.name),
+      el("div", { class: "account" }, `${g.account} · ${g.platform}`)
     ),
-    el("a", { class: "rank", href: g.profileUrl, target: "_blank", rel: "noopener", title: `${g.name}-Profil auf dem Tracker öffnen` },
-      icon,
-      el("div", {},
-        el("div", { class: "rank-name" }, rankText || "Unranked"),
-        g.points !== "" && g.points != null ? el("div", { class: "rank-points" }, `${g.points} ${g.pointsLabel}`) : null,
-        el("div", { class: "playlist" }, g.playlist)
-      )
-    ),
-    peakRow(g),
+    g.level != null && g.level !== "" ? el("span", { class: "level" }, `Lvl ${g.level}`) : null
+  );
+  const body = el("div", { class: "card-body" },
     statsGrid(g),
     championList(g),
     el("a", { class: "more", href: g.profileUrl, target: "_blank", rel: "noopener" }, "Volles Profil ansehen →")
   );
+
+  // Großes Rang-Feld
+  const rankPanel = el("div", { class: "rank-panel" },
+    el("a", { class: "rank", href: g.profileUrl, target: "_blank", rel: "noopener", title: `${g.name}-Profil auf dem Tracker öffnen` },
+      icon,
+      el("div", { class: "rank-name" }, rankText || "Unranked"),
+      g.points !== "" && g.points != null ? el("div", { class: "rank-points" }, `${g.points} ${g.pointsLabel}`) : null,
+      el("div", { class: "playlist" }, g.playlist)
+    ),
+    peakRow(g)
+  );
+
+  return el("article", { class: "card", style: `--tier:${tierColor(g.rank)}` }, head, body, rankPanel);
 }
+
+// Reihenfolge auf der Seite (wie in der Skizze)
+const ORDER = ["lol", "apex", "rocketleague"];
+const byOrder = (a, b) => (ORDER.indexOf(a.id) + 1 || 99) - (ORDER.indexOf(b.id) + 1 || 99);
 
 async function load(path) {
   const res = await fetch(path, { cache: "no-store" });
@@ -102,34 +116,114 @@ async function load(path) {
   return res.json();
 }
 
+// ---------- Hero ----------
+function renderHeadline(lines) {
+  // letzte Zeile: Punkt am Ende pink einfärben
+  const h = document.getElementById("headline");
+  h.replaceChildren();
+  lines.forEach((line, i) => {
+    if (i) h.append(el("br"));
+    const last = i === lines.length - 1;
+    if (!last) return h.append(line);
+    // letzte Zeile im Sprühdosen-Verlauf, Punkt pink
+    const text = line.endsWith(".") ? line.slice(0, -1) : line;
+    h.append(el("span", { class: "spray-text" }, text));
+    if (line.endsWith(".")) h.append(el("span", { class: "dot" }, "."));
+  });
+}
+
+// ---------- Laufband ----------
+function fillMarquee(track, words) {
+  // Inhalt doppelt, damit die Animation (−50 %) nahtlos läuft
+  const one = words.flatMap((w) => [el("span", {}, w), el("span", { class: "sep" }, "/")]);
+  track.replaceChildren(...one, ...one.map((n) => n.cloneNode(true)));
+}
+
+// ---------- Twitch ----------
+function twitchChannel(socials) {
+  const t = (socials || []).find((s) => /twitch\.tv/i.test(s.url || ""));
+  return t ? t.url.replace(/\/+$/, "").split("/").pop() : "";
+}
+
+function renderTwitch(channel) {
+  const player = document.getElementById("player");
+  if (!channel) { document.getElementById("live").hidden = true; return; }
+  const url = `https://www.twitch.tv/${channel}`;
+  document.getElementById("twitch-btn").href = url;
+  document.getElementById("hero-twitch").href = url;
+  document.getElementById("hero-twitch").target = "_blank";
+  document.getElementById("hero-twitch").rel = "noopener";
+  document.getElementById("twitch-name").textContent = `twitch.tv/${channel}`;
+
+  // Twitch verlangt die eigene Domain als "parent" – lokal (file://) geht das nicht
+  const host = location.hostname;
+  if (!host) {
+    player.replaceChildren(el("div", { class: "player-fallback" }, el("strong", {}, "Stream"), "Player erscheint auf der Live-Seite."));
+    return;
+  }
+  player.replaceChildren(el("iframe", {
+    src: `https://player.twitch.tv/?channel=${encodeURIComponent(channel)}&parent=${encodeURIComponent(host)}&muted=true&autoplay=false`,
+    title: `Twitch-Stream von ${channel}`,
+    allowfullscreen: "",
+    loading: "lazy",
+  }));
+}
+
 (async () => {
+  let profile = {};
   try {
-    const p = await load("data/profile.json");
-    document.title = p.name;
-    document.getElementById("name").textContent = p.name;
-    document.getElementById("tagline").textContent = p.tagline;
-    const av = document.getElementById("avatar");
-    if (p.avatar) { av.style.backgroundImage = `url("${p.avatar}")`; av.textContent = ""; }
-    else av.textContent = p.name.charAt(0).toUpperCase();
+    const p = (profile = await load("data/profile.json"));
+    document.title = `${p.name} – Streamer & Gamer`;
+    document.getElementById("footer-name").textContent = p.name;
+    if (p.kicker) document.getElementById("kicker").textContent = p.kicker;
+    if (p.headline?.length) renderHeadline(p.headline);
+    document.getElementById("hero-intro").textContent = p.intro || p.tagline || "";
+    document.getElementById("sticker-handle").textContent = p.name;
+
+    const mono = document.getElementById("monogram");
+    if (p.avatar) { mono.style.backgroundImage = `url("${p.avatar}")`; mono.classList.add("has-img"); }
+    else if (p.monogram) mono.textContent = p.monogram;
+
+    const main = (p.facts || []).find((f) => /main/i.test(f.label));
+    if (main) document.getElementById("sticker-main").textContent = main.value.split(" ")[0];
+
     document.getElementById("socials").replaceChildren(
-      ...p.socials.filter((s) => s.url).map((s) => el("a", { href: s.url, target: "_blank", rel: "noopener" }, s.name))
+      ...p.socials.filter((s) => s.url).map((s) => el("a", { href: s.url, target: "_blank", rel: "noopener" }, `${s.name} ↗`))
     );
     document.getElementById("about-text").replaceChildren(...p.about.map((t) => el("p", {}, t)));
     document.getElementById("facts").replaceChildren(
       ...p.facts.map((f) => el("div", {}, el("dt", {}, f.label), el("dd", {}, f.value)))
     );
+    renderTwitch(twitchChannel(p.socials));
   } catch (e) { console.error(e); }
 
   const games = document.getElementById("games");
   try {
     const r = await load("data/ranks.json");
-    games.replaceChildren(...r.games.map(gameCard));
+    const sorted = [...r.games].sort(byOrder);
+    games.replaceChildren(...sorted.map(gameCard));
     if (r.updated) {
       const d = new Date(r.updated);
       document.getElementById("updated").textContent =
         "Stand: " + d.toLocaleString("de-DE", { dateStyle: "medium", timeStyle: "short" });
     }
+
+    // Hero-Tags + Laufbänder aus den Spielen
+    document.getElementById("hero-tags").replaceChildren(...sorted.map((g) => el("li", {}, g.name)));
+    const ranked = sorted.map((g) => `${g.name} · ${[g.rank, g.division].filter(Boolean).join(" ")}`);
+    fillMarquee(document.querySelector('[data-marquee="primary"]'), [...sorted.map((g) => g.name), "Live auf Twitch", "Ranked Grind"]);
+    fillMarquee(document.querySelector('[data-marquee="secondary"]'), [...ranked, "GG WP"]);
+
+    // Level-Sticker: Main-Game bevorzugen, sonst höchstes Level
+    const mainName = (profile.facts || []).find((f) => /main/i.test(f.label))?.value || "";
+    const withLvl = sorted.filter((g) => g.level);
+    const lvlGame = withLvl.find((g) => g.name === mainName) || withLvl.sort((a, b) => b.level - a.level)[0];
+    if (lvlGame) {
+      document.getElementById("sticker-level").textContent = `LVL ${lvlGame.level}`;
+      document.getElementById("sticker-level-game").textContent = lvlGame.name;
+    }
   } catch (e) {
+    console.error(e);
     games.replaceChildren(el("p", { class: "muted" }, "Ränge konnten nicht geladen werden."));
   }
 })();

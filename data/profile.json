@@ -36,5 +36,42 @@
       "name": "Instagram",
       "url": "https://www.instagram.com/yjustinx/"
     }
-  ]
+  ],
+  "setup": {
+    "image": "",
+    "imageAlt": "Mein PC-Setup",
+    "caption": "my battlestation",
+    "items": [
+      {
+        "tag": "CPU",
+        "label": "Prozessor",
+        "value": "AMD Ryzen 5 7600X"
+      },
+      {
+        "tag": "GPU",
+        "label": "Grafikkarte",
+        "value": "Zotac RTX 5070 OC"
+      },
+      {
+        "tag": "RAM",
+        "label": "Arbeitsspeicher",
+        "value": "Corsair Vengeance 32 GB"
+      },
+      {
+        "tag": "Maus",
+        "label": "Maus",
+        "value": "Logitech PRO X Superlight 2"
+      },
+      {
+        "tag": "Keys",
+        "label": "Tastatur",
+        "value": "Nyfter Nyfboard HE 82K 2.0"
+      },
+      {
+        "tag": "Cam",
+        "label": "Webcam",
+        "value": "Insta360 Link 2C Pro"
+      }
+    ]
+  }
 }

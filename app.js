@@ -169,6 +169,28 @@ function renderTwitch(channel) {
   }));
 }
 
+// ---------- PC Setup ----------
+function renderSetup(setup) {
+  const sec = document.getElementById("setup");
+  if (!setup || !(setup.items || []).length) { sec.hidden = true; return; }
+  document.getElementById("specs").replaceChildren(...setup.items.map((it) =>
+    el("li", { class: "spec" },
+      el("span", { class: "spec-tag", "aria-hidden": "true" }, it.tag || it.label),
+      el("div", {},
+        el("span", { class: "spec-label" }, it.label),
+        el("span", { class: "spec-value" }, it.value)
+      )
+    )
+  ));
+  if (setup.image) {
+    const img = el("img", { src: setup.image, alt: setup.imageAlt || "Mein PC-Setup", loading: "lazy" });
+    img.addEventListener("error", () => img.remove()); // Platzhalter bleibt, falls das Bild fehlt
+    const inner = document.getElementById("setup-photo-inner");
+    img.addEventListener("load", () => inner.replaceChildren(img));
+  }
+  if (setup.caption) document.getElementById("setup-caption").textContent = setup.caption;
+}
+
 (async () => {
   let profile = {};
   try {
@@ -195,6 +217,7 @@ function renderTwitch(channel) {
       ...p.facts.map((f) => el("div", {}, el("dt", {}, f.label), el("dd", {}, f.value)))
     );
     renderTwitch(twitchChannel(p.socials));
+    renderSetup(p.setup);
   } catch (e) { console.error(e); }
 
   const games = document.getElementById("games");

@@ -183,10 +183,13 @@ function renderSetup(setup) {
     )
   ));
   if (setup.image) {
-    const img = el("img", { src: setup.image, alt: setup.imageAlt || "Mein PC-Setup", loading: "lazy" });
-    img.addEventListener("error", () => img.remove()); // Platzhalter bleibt, falls das Bild fehlt
     const inner = document.getElementById("setup-photo-inner");
-    img.addEventListener("load", () => inner.replaceChildren(img));
+    const placeholder = [...inner.childNodes];
+    const img = el("img", { src: setup.image, alt: setup.imageAlt || "Mein PC-Setup", loading: "lazy" });
+    // Bild direkt einsetzen (lazy lädt nur Bilder, die schon in der Seite sind);
+    // lädt es nicht, kommt der Platzhalter zurück
+    img.addEventListener("error", () => inner.replaceChildren(...placeholder));
+    inner.replaceChildren(img);
   }
   if (setup.caption) document.getElementById("setup-caption").textContent = setup.caption;
 }

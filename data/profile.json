@@ -38,8 +38,8 @@
     }
   ],
   "setup": {
-    "image": "",
-    "imageAlt": "Mein PC-Setup",
+    "image": "assets/setup.jpg",
+    "imageAlt": "Mein Setup: drei Monitore, Tastatur mit Kirschblüten-Mauspad, PC daneben",
     "caption": "my battlestation",
     "items": [
       {

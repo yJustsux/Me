@@ -433,7 +433,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   box-shadow: 10px 10px 0 var(--purple);
   transform: rotate(2deg);
 }
-.photo-inner { aspect-ratio: 4 / 3; background: var(--bg-2); border: 2px solid var(--ink); overflow: hidden; display: grid; place-items: center; }
+.photo-inner { aspect-ratio: 16 / 9; background: var(--bg-2); border: 2px solid var(--ink); overflow: hidden; display: grid; place-items: center; }
 .photo-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .photo-empty {
   text-align: center; color: var(--muted); font: .8rem var(--f-mono); padding: 24px;
